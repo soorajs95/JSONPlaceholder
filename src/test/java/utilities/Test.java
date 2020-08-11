@@ -2,6 +2,7 @@ package utilities;
 
 import io.restassured.response.Response;
 import org.apache.commons.validator.routines.EmailValidator;
+import org.junit.Assert;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,8 +51,7 @@ public class Test {
         // Verify email valid
         EmailValidator validator = EmailValidator.getInstance();
         for (String emailToVerify : emailsToVerify) {
-            if (!validator.isValid(emailToVerify))
-                System.out.println("Email not valid: " + emailToVerify);
+            Assert.assertTrue(validator.isValid(emailToVerify));
         }
     }
 
