@@ -4,7 +4,6 @@ import io.restassured.response.Response;
 import org.apache.commons.validator.routines.EmailValidator;
 import org.junit.Assert;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
@@ -14,43 +13,29 @@ public class Test {
 
     public static void main(String[] args) {
         // Get user id
-        Response response = given().get("https://jsonplaceholder.typicode.com/users");
-        Integer userId = 0;
-        List<String> names = response.path("username");
+        Response response = given().param("username", "Delphine")
+                .get("https://jsonplaceholder.typicode.com/users");
         List<Integer> userIds = response.path("id");
-        for (int i = 0; i < names.size(); i++) {
-            if (names.get(i).equalsIgnoreCase("Delphine"))
-                userId = userIds.get(i);
-        }
+        Integer userId = userIds.get(0);
         System.out.println("UserId: " + userId);
 
         // Get post ids by user
-        response = given().get("https://jsonplaceholder.typicode.com/posts");
-        List<Integer> postIdsByUser = new ArrayList<>();
-        userIds = response.path("userId");
+        response = given()
+                .formParam("userId", userId)
+                .get("https://jsonplaceholder.typicode.com/posts");
         List<Integer> postIds = response.path("id");
-        for (int j = 0; j < userIds.size(); j++) {
-            if (userIds.get(j).equals(userId))
-                postIdsByUser.add(postIds.get(j));
-        }
-        System.out.println("Post Ids by user: " + postIdsByUser);
+        System.out.println("Post Ids by user: " + postIds);
 
         // Get emails to verify
-        response = given().get("https://jsonplaceholder.typicode.com/comments");
-        List<String> emailsToVerify = new ArrayList<>();
-        postIds = response.path("id");
+        response = given()
+                .formParam("postId", postIds)
+                .get("https://jsonplaceholder.typicode.com/comments");
         List<String> emails = response.path("email");
-        for (int k = 0; k < postIds.size(); k++) {
-            for (int postIdByUser : postIdsByUser) {
-                if (postIds.get(k) == postIdByUser)
-                    emailsToVerify.add(emails.get(k));
-            }
-        }
-        System.out.println("Email to verify: " + emailsToVerify);
+        System.out.println("Email to verify: " + emails);
 
         // Verify email valid
         EmailValidator validator = EmailValidator.getInstance();
-        for (String emailToVerify : emailsToVerify) {
+        for (String emailToVerify : emails) {
             Assert.assertTrue(validator.isValid(emailToVerify));
         }
     }
