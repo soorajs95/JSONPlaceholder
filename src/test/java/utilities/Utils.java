@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 import static io.restassured.RestAssured.with;
 
-
 public class Utils {
 
     public static String JSON_PLACEHOLDER_HOST = "https://jsonplaceholder.typicode.com";

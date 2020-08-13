@@ -9,7 +9,9 @@ import org.junit.runner.RunWith;
         plugin = {"pretty", "json:target/cucumber.json"},
         features = {"src/test/resources/features/"},
         monochrome = true,
-        glue = {"steps"})
+        glue = {"steps"}
+)
+
 public class RunCucumberTest {
 
 }

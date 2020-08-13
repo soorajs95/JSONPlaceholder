@@ -23,7 +23,7 @@ public class JSONPlaceHolderSteps extends Utils {
             userResponse = getRequestWithParameter(USERS, "username", username);
             verifyResponseCode(userResponse, HttpURLConnection.HTTP_OK);
             userId = userResponse.path("id");
-            Assert.assertTrue("No user with name " + username, userId.size() > 0);
+            Assert.assertTrue("No userId found for user " + username, userId.size() > 0);
         } catch (Exception e) {
             Assert.fail("Failed to query username and get userID: " + e);
         }
@@ -35,7 +35,7 @@ public class JSONPlaceHolderSteps extends Utils {
             userPostsResponse = getRequestWithParameter(POSTS, "userId", userId);
             verifyResponseCode(userPostsResponse, HttpURLConnection.HTTP_OK);
             postIds = userPostsResponse.path("id");
-            Assert.assertTrue("No posts for userID " + userId, postIds.size() > 0);
+            Assert.assertTrue("No postIds found for userID " + userId, postIds.size() > 0);
         } catch (Exception e) {
             Assert.fail("Failed to get postIds for userId: " + e);
         }
