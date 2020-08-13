@@ -6,39 +6,59 @@ import io.cucumber.java.en.Then;
 import io.restassured.response.Response;
 import org.apache.commons.validator.routines.EmailValidator;
 import org.junit.Assert;
-import utilities.Utilities;
+import utilities.Utils;
 
+import java.net.HttpURLConnection;
 import java.util.ArrayList;
 
-public class JSONPlaceHolderSteps extends Utilities {
+public class JSONPlaceHolderSteps extends Utils {
 
-    public static Response jsonPlaceHolderUserResponse, jsonPlaceHolderUserPostsResponse, jsonPlaceHolderUserPostCommentsResponse;
+    public static Response userResponse, userPostsResponse, userPostCommentsResponse;
     public static ArrayList<Integer> userId, postIds;
     public static ArrayList<String> emailIds;
 
     @Given("Username to query {} and get the userId")
     public void usernameToQueryUsernameAndGetTheUserId(String username) {
-        jsonPlaceHolderUserResponse = getRequestWithParameter(USERS, "username", username);
-        userId = jsonPlaceHolderUserResponse.path("id");
-        Assert.assertTrue("", userId.size() > 0);
+        try {
+            userResponse = getRequestWithParameter(USERS, "username", username);
+            verifyResponseCode(userResponse, HttpURLConnection.HTTP_OK);
+            userId = userResponse.path("id");
+            Assert.assertTrue("No user with name " + username, userId.size() > 0);
+        } catch (Exception e) {
+            Assert.fail("Failed to query username and get userID: " + e);
+        }
     }
 
     @Then("Get all the postIds for the userId")
     public void getAllThePostIdsForTheUserId() {
-        jsonPlaceHolderUserPostsResponse = getRequestWithParameter(POSTS, "userId", userId);
-        postIds = jsonPlaceHolderUserPostsResponse.path("id");
-        Assert.assertTrue("", postIds.size() > 0);
+        try {
+            userPostsResponse = getRequestWithParameter(POSTS, "userId", userId);
+            verifyResponseCode(userPostsResponse, HttpURLConnection.HTTP_OK);
+            postIds = userPostsResponse.path("id");
+            Assert.assertTrue("No posts for userID " + userId, postIds.size() > 0);
+        } catch (Exception e) {
+            Assert.fail("Failed to get postIds for userId: " + e);
+        }
     }
 
     @And("Get all the comments for the postIds")
     public void getAllTheCommentsForThePostIds() {
-        jsonPlaceHolderUserPostCommentsResponse = getRequestWithParameter(COMMENTS, "postId", postIds);
+        try {
+            userPostCommentsResponse = getRequestWithParameter(COMMENTS, "postId", postIds);
+            verifyResponseCode(userPostCommentsResponse, HttpURLConnection.HTTP_OK);
+        } catch (Exception e) {
+            Assert.fail("Failed to get comments for postIds: " + e);
+        }
     }
 
     @Then("Validate email format in each comment")
     public void validateEmailFormatInEachComment() {
-        emailIds = jsonPlaceHolderUserPostCommentsResponse.path("email");
-        emailIds.forEach(email -> Assert.assertTrue("", EmailValidator.getInstance().isValid(email)));
+        try {
+            emailIds = userPostCommentsResponse.path("email");
+            emailIds.forEach(email -> Assert.assertTrue("Email not valid: " + email, EmailValidator.getInstance().isValid(email)));
+        } catch (Exception e) {
+            Assert.fail("Failed to validate email format in comments: " + e);
+        }
     }
 
 }
