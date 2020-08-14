@@ -1,7 +1,6 @@
 package utilities;
 
 import io.restassured.response.Response;
-import org.junit.Assert;
 
 import java.util.ArrayList;
 
@@ -20,10 +19,6 @@ public class Utils {
 
     public static Response getRequestWithParameter(String URI, String parameterKey, ArrayList<Integer> parameterValue) {
         return with().params(parameterKey, parameterValue).given().get(JSON_PLACEHOLDER_HOST + URI);
-    }
-
-    public static void verifyResponseCode(Response response, int statusCode) {
-        Assert.assertEquals("Response status code did not match", statusCode, response.statusCode());
     }
 
 }
