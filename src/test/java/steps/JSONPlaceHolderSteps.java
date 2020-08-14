@@ -11,6 +11,8 @@ import utilities.Utils;
 import java.net.HttpURLConnection;
 import java.util.ArrayList;
 
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
+
 public class JSONPlaceHolderSteps extends Utils {
 
     public static Response userResponse, userPostsResponse, userPostCommentsResponse;
@@ -22,6 +24,7 @@ public class JSONPlaceHolderSteps extends Utils {
         try {
             userResponse = getRequestWithParameter(USERS, "username", username);
             verifyResponseCode(userResponse, HttpURLConnection.HTTP_OK);
+            userResponse.then().assertThat().body(matchesJsonSchemaInClasspath("schemas/users.json"));
             userId = userResponse.path("id");
             Assert.assertTrue("No userId found for user " + username, userId.size() > 0);
         } catch (Exception e) {
@@ -34,6 +37,7 @@ public class JSONPlaceHolderSteps extends Utils {
         try {
             userPostsResponse = getRequestWithParameter(POSTS, "userId", userId);
             verifyResponseCode(userPostsResponse, HttpURLConnection.HTTP_OK);
+            userPostsResponse.then().assertThat().body(matchesJsonSchemaInClasspath("schemas/posts.json"));
             postIds = userPostsResponse.path("id");
             Assert.assertTrue("No postIds found for userID " + userId, postIds.size() > 0);
         } catch (Exception e) {
@@ -46,6 +50,7 @@ public class JSONPlaceHolderSteps extends Utils {
         try {
             userPostCommentsResponse = getRequestWithParameter(COMMENTS, "postId", postIds);
             verifyResponseCode(userPostCommentsResponse, HttpURLConnection.HTTP_OK);
+            userPostCommentsResponse.then().assertThat().body(matchesJsonSchemaInClasspath("schemas/comments.json"));
         } catch (Exception e) {
             Assert.fail("Failed to get comments for postIds: " + e);
         }
