@@ -3,10 +3,9 @@
 JSONPlaceholder is a REST service automation testing framework using:
 
 - [Cucumber JVM](https://cucumber.io/) Behavior-Driven Development tool
-- [JUnit](https://junit.org/junit4/) testing framework
 - [REST-assured](http://rest-assured.io/) library for REST service testing
 - [REST-assured json-schema-validator](https://javadoc.io/doc/io.rest-assured/json-schema-validator/latest/index.html) for JSON schema validations
-- [Commons Validator](https://commons.apache.org/proper/commons-validator/) for email format validation
+- [Apache Commons Validator](https://commons.apache.org/proper/commons-validator/) for email format validation
 - [Cluecumber Report Maven Plugin](https://github.com/trivago/cluecumber-report-plugin) for Cucumber test reporting
 
 ## Test-Coverage
@@ -14,16 +13,18 @@ JSONPlaceholder is a REST service automation testing framework using:
 
 ## Test-Report
 
+**Test Execution Report:**
+
 ![Report](/images/Report_Image.png)  
+
+**Circleci Pipeline Report:**
+
 ![Report](/images/circleci_report.png)  
 
 ## Approach
 
 - Using open source libraries and effective tools for automation testing
 - Using Cucumber BDD to easily handle data inside feature file and for easy understanding
-
-## Issues
-
 
 ## Executing Tests
 
