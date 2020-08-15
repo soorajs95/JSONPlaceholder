@@ -19,7 +19,7 @@
         ],
         "properties": {
           "id": {
-            "type": "string",
+            "type": "integer",
             "pattern": "^[0-9]*$"
           },
           "name": {
