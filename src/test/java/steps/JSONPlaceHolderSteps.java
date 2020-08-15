@@ -19,7 +19,7 @@ public class JSONPlaceHolderSteps extends Utils {
     public static Response userPostCommentsResponse;
     public static ArrayList<Integer> userId, postIds;
 
-    @Given("Username to query {} and get the userId")
+    @Given("The username to query {} and get the userId")
     public void usernameToQueryUsernameAndGetTheUserId(String username) {
         Response userResponse = getRequestWithParameter(USERS, "username", username);
         userResponse.then().log().ifError().assertThat().statusCode(HttpsURLConnection.HTTP_OK)
