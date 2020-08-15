@@ -33,7 +33,7 @@ public class JSONPlaceHolderSteps extends Utils {
     public void getAllThePostIdsForTheUserId() {
         userPostsResponse = getRequestWithParameter(POSTS, "userId", userId);
         userPostsResponse.then().log().ifError().assertThat().statusCode(HttpsURLConnection.HTTP_OK)
-                .assertThat().body(matchesJsonSchemaInClasspath("schemas/post.json"));
+                .assertThat().body(matchesJsonSchemaInClasspath("schemas/posts.json"));
         postIds = userPostsResponse.path("id");
         assertThat("No postIds found for userID " + userId, postIds.size(), greaterThan(0));
     }
