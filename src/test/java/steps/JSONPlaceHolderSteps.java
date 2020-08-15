@@ -16,13 +16,12 @@ import static org.hamcrest.Matchers.*;
 
 public class JSONPlaceHolderSteps extends Utils {
 
-    public static Response userResponse, userPostsResponse, userPostCommentsResponse;
+    public static Response userPostCommentsResponse;
     public static ArrayList<Integer> userId, postIds;
-    public static ArrayList<String> emailIds;
 
     @Given("Username to query {} and get the userId")
     public void usernameToQueryUsernameAndGetTheUserId(String username) {
-        userResponse = getRequestWithParameter(USERS, "username", username);
+        Response userResponse = getRequestWithParameter(USERS, "username", username);
         userResponse.then().log().ifError().assertThat().statusCode(HttpsURLConnection.HTTP_OK)
                 .assertThat().body(matchesJsonSchemaInClasspath("schemas/users.json"));
         userId = userResponse.path("id");
@@ -31,7 +30,7 @@ public class JSONPlaceHolderSteps extends Utils {
 
     @Then("Get all the postIds for the userId")
     public void getAllThePostIdsForTheUserId() {
-        userPostsResponse = getRequestWithParameter(POSTS, "userId", userId);
+        Response userPostsResponse = getRequestWithParameter(POSTS, "userId", userId);
         userPostsResponse.then().log().ifError().assertThat().statusCode(HttpsURLConnection.HTTP_OK)
                 .assertThat().body(matchesJsonSchemaInClasspath("schemas/posts.json"));
         postIds = userPostsResponse.path("id");
@@ -47,7 +46,7 @@ public class JSONPlaceHolderSteps extends Utils {
 
     @Then("Validate email format in each comment")
     public void validateEmailFormatInEachComment() {
-        emailIds = userPostCommentsResponse.path("email");
+        ArrayList<String> emailIds = userPostCommentsResponse.path("email");
         emailIds.forEach(email -> assertThat("Email not valid: " + email, EmailValidator.getInstance().isValid(email), is(equalTo(true))));
     }
 
