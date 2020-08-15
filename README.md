@@ -15,6 +15,7 @@ JSONPlaceholder is a REST service automation testing framework using:
 ## Test-Report
 
 ![Report](/images/Report_Image.png)  
+![Report](/images/circleci_report.png)  
 
 ## Approach
 
