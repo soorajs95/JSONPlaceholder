@@ -8,8 +8,27 @@ JSONPlaceholder is a REST service automation testing framework using:
 - [Apache Commons Validator](https://commons.apache.org/proper/commons-validator/) for email format validation
 - [Cluecumber Report Maven Plugin](https://github.com/trivago/cluecumber-report-plugin) for Cucumber test reporting
 
+## Pre-requisites
+
+- Java JDK version 8 or above should be installed
+- Maven should be installed
+
+## Approach
+
+- Using open source libraries and effective tools for automation testing
+- Using Cucumber BDD to easily handle data inside feature file and for easy understanding
+- Using json-schema-validator to validate all the Api response fields
+
 ## Test-Coverage
 
+- All the response fields are validated using *json-schema-validator*
+- Email format validation is done using *Apache Commons Validator* and *json-schema-validator* to demonstrate different ways of validating email format
+
+**Flow Tested:**
+
+- Search for the user with username “Delphine”
+- Use the details fetched to make a search for the posts written by the user
+- For each post, fetch the comments and validate if the emails in the comment section are in the proper format
 
 ## Test-Report
 
@@ -20,11 +39,6 @@ JSONPlaceholder is a REST service automation testing framework using:
 **Circleci Pipeline Report:**
 
 ![Report](/images/circleci_report.png)  
-
-## Approach
-
-- Using open source libraries and effective tools for automation testing
-- Using Cucumber BDD to easily handle data inside feature file and for easy understanding
 
 ## Executing Tests
 
