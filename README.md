@@ -13,37 +13,31 @@ JSONPlaceholder is a REST service automation testing framework using:
 - Java JDK version 8 or above should be installed
 - Maven should be installed
 
-## Approach
-
-- Using open source libraries and effective tools for automation testing
-- Using *Cucumber BDD* for handling test data inside feature file and for easy understanding of test flow
-- Using *json-schema-validator* for validating all the Api response formats and patterns
-
 ## Test Flow
 
-- Search for the user with username, Eg: Delphine
+- Search for the user with username, *Eg: Delphine*
 - Use the details fetched to make a search for the posts written by the user
 - For each post, fetch the comments and validate if the emails in the comment section are in the proper format
 
 
 ## Test-Coverage
 
-- All the Api response status codes are validated
-- All the response formats and patterns are validated using *json-schema-validator*
-- All the possible edge cases are handled, Eg: Username doesn't exist, UserId doesn't have any posts
-- Email format validations are done using *Apache Commons Validator* and *json-schema-validator* to demonstrate different ways of validating email format
+- API response status codes are validated
+- API response formats and patterns are validated using *json-schema-validator*
+- Possible edge cases are handled, *Eg: If username doesn't exist, If userId doesn't have any posts*
+- Email format validations are done using *Apache Commons Validator* and *json-schema-validator* to demonstrate multiple ways of validating email format
 
 ## Test-Report
 
-**Test Execution Report:**
+**Sample Test Execution Report:**
 
 ![Test report](/images/Report_Image.png)  
 
-**circleci Pipeline Execution:**
+**Sample Circleci Pipeline Execution:**
 
-[circleci configuration](/.circleci/config.yml)
+*[Circleci configuration](/.circleci/config.yml)*
 
-![circleci execution](/images/circleci_execution.png)  
+![Circleci execution](/images/circleci_execution.png)  
 
 ## Executing Tests
 
