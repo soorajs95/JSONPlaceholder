@@ -45,8 +45,7 @@ public class JSONPlaceHolderSteps extends Utils {
     @Then("Validate email format in each comment")
     public void validateEmailFormatInEachComment() {
         userPostCommentsResponse.then().assertThat().body("email", not(empty()));
-        ArrayList<String> emailIds = userPostCommentsResponse.path("email");
-        validateEmailFormat(emailIds);
+        validateEmailFormat(userPostCommentsResponse.path("email"));
     }
 
 }

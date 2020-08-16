@@ -23,9 +23,9 @@ JSONPlaceholder is a REST service automation testing framework using:
 ## Test-Coverage
 
 - API response status codes are validated
-- API response formats and patterns are validated using *json-schema-validator*
+- API response formats and patterns are validated using *REST-assured json-schema-validator*
 - Possible edge cases are handled, *Eg: If username doesn't exist, If userId doesn't have any posts*
-- Email format validations are done using *Apache Commons Validator* and *json-schema-validator* to demonstrate multiple ways of validating email format
+- Email format validations are done using *Apache Commons Validator* and *REST-assured json-schema-validator* to demonstrate multiple ways of validating email format
 
 ## Test-Report
 
@@ -33,11 +33,11 @@ JSONPlaceholder is a REST service automation testing framework using:
 
 ![Test report](/images/Report_Image.png)  
 
-**Sample Circleci Pipeline Execution:**
+## Continuous Integration using [circleci](https://circleci.com/)
 
-*[Circleci configuration](/.circleci/config.yml)*
+*[circleci configuration](/.circleci/config.yml)*
 
-![Circleci execution](/images/circleci_execution.png)  
+![circleci execution](/images/circleci_execution.png)  
 
 ## Executing Tests
 
