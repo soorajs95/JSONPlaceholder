@@ -7,6 +7,7 @@ JSONPlaceholder is a REST service automation testing framework using:
 - [Apache Commons Validator](https://commons.apache.org/proper/commons-validator/) for email format validation
 - [Cucumber JVM](https://cucumber.io/) Behavior-Driven Development tool
 - [Cluecumber Report Maven Plugin](https://github.com/trivago/cluecumber-report-plugin) for Cucumber test reporting
+- [circleci](https://circleci.com/) for continuous integration
 
 ## Pre-requisites
 
@@ -33,7 +34,7 @@ JSONPlaceholder is a REST service automation testing framework using:
 
 ![Test report](/images/Report_Image.png)  
 
-## Continuous Integration using [circleci](https://circleci.com/)
+## Continuous Integration - circleci
 
 *[circleci configuration](/.circleci/config.yml)*
 
