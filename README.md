@@ -16,19 +16,22 @@ JSONPlaceholder is a REST service automation testing framework using:
 ## Approach
 
 - Using open source libraries and effective tools for automation testing
-- Using Cucumber BDD to easily handle data inside feature file and for easy understanding
-- Using json-schema-validator to validate all the Api response fields
+- Using *Cucumber BDD* to easily handle data inside feature file and for easy understanding
+- Using *json-schema-validator* to validate all the Api response fields
 
-## Test-Coverage
-
-- All the response fields are validated using *json-schema-validator*
-- Email format validation is done using *Apache Commons Validator* and *json-schema-validator* to demonstrate different ways of validating email format
-
-**Flow Tested:**
+## Test Flow
 
 - Search for the user with username “Delphine”
 - Use the details fetched to make a search for the posts written by the user
 - For each post, fetch the comments and validate if the emails in the comment section are in the proper format
+
+
+## Test-Coverage
+
+- All the Api response status codes are validated
+- All the possible negative cases are handled
+- All the response fields are validated using *json-schema-validator*
+- Email format validation is done using *Apache Commons Validator* and *json-schema-validator* to demonstrate different ways of validating email format
 
 ## Test-Report
 
@@ -36,7 +39,7 @@ JSONPlaceholder is a REST service automation testing framework using:
 
 ![Report](/images/Report_Image.png)  
 
-**Circleci Pipeline Report:**
+**Circleci Pipeline Run:**
 
 ![Report](/images/circleci_report.png)  
 
