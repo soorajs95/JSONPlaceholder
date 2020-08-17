@@ -15,7 +15,7 @@ JSONPlaceholder is a REST service automation testing framework using:
 - Maven should be installed
 
 ## Test Flow
-API-Host - [](https://jsonplaceholder.typicode.com/)
+API-Host - https://jsonplaceholder.typicode.com/
 - Search for the user with username, *Eg: Delphine*
 - Use the details fetched to make a search for the posts written by the user
 - For each post, fetch the comments and validate if the emails in the comment section are in the proper format
